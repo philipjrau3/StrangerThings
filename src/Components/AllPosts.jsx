@@ -8,21 +8,16 @@ import './AllPosts.css';
 import Button from './Button';
 
 const AllPosts = ({ posts, setPosts }) => {
-  const postId = 1;
-  const postId2 = 2;
-  const postId3 = 3;
-  const postToCreate = {
-    title: 'Our New Post',
-    body: 'This post is mostly about the bestestest kitten, my Grim!',
-    userId: 1,
-  };
-  const postToCompletelyUpdate = {
-    title: 'Our Updated Post with id: 1',
-    body: 'I also have a slither puppy named Nagini!',
-    userId: 1,
-  };
-  const fieldsToUpdate = {
-  };
+  // const postToCreate = {
+  //   title: '',
+  //   description: '',
+  //   user._id: 
+  // };
+  // const postToCompletelyUpdate = {
+  //   title: '',
+  //   body: '',
+  //   user._id: 
+  // };
 
   return (
     <div className='user-posts'>
@@ -30,7 +25,7 @@ const AllPosts = ({ posts, setPosts }) => {
       <Button
         action={async () => {
           const newPost = await createNewPost(postToCreate);
-          setAllPosts([newPost, ...posts]);
+          setPosts([newPost, ...posts]);
         }}
         content={'Create New Post'}
       />
@@ -42,18 +37,18 @@ const AllPosts = ({ posts, setPosts }) => {
             postToCompletelyUpdate
           );
           const listToReturn = await posts.filter(
-            (post) => post.id !== updatedPost.id
+            (post) => post._id !== updatedPost.id
           );
-          setAllPosts([updatedPost, ...listToReturn]);
+          setPosts([updatedPost, ...listToReturn]);
         }}
         content={'Update Post'}
       />
 
       <Button
         action={async () => {
-          const postDeleted = await deletePost(postId3);
-          setAllPosts([
-            ...posts.filter((post) => post.id !== postDeleted.id),
+          const postDeleted = await deletePost(post._id);
+          setPosts([
+            ...posts.filter((post) => post._id !== postDeleted.id),
           ]);
         }}
         content={'Delete Post'}
