@@ -5,7 +5,7 @@ import {
   deletePost,
 } from '../api/posts';
 import './AllPosts.css';
-import Button from './Button';
+// import Button from './Button';
 
 const AllPosts = ({ posts, setPosts }) => {
   // const postToCreate = {
@@ -22,15 +22,15 @@ const AllPosts = ({ posts, setPosts }) => {
   return (
     <div className='user-posts'>
 
-      <Button
+      {/* <Button
         action={async () => {
           const newPost = await createNewPost(postToCreate);
           setPosts([newPost, ...posts]);
         }}
         content={'Create New Post'}
-      />
+      /> */}
 
-      <Button
+      {/* <Button
         action={async () => {
           const updatedPost = await updateEntirePost(
             postId,
@@ -52,15 +52,14 @@ const AllPosts = ({ posts, setPosts }) => {
           ]);
         }}
         content={'Delete Post'}
-      />
+      /> */}
 
-      {posts.length ? (
-        posts.map(({ id, title, body }) => (
+      {posts.length ? posts.map(({ id, title, body }) => (
           <div key={id} className='post'>
             <h3>{title}</h3>
             <p>{body}</p>
           </div>
-        ))
+        )
       ) : (
         <h2>No Posts Here</h2>
       )}

@@ -3,9 +3,9 @@ import AllPosts from "./AllPosts";
 
 const Navbar = ({ posts }) => {
     return(
-      <Navbar>
-        <AllPosts posts={posts} />
-      </Navbar>
+        <>
+        high five
+        </>
     )
 }
 
