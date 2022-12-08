@@ -6,7 +6,7 @@ export const getAllPosts = async () => {
     try{
         const response = await fetch(`${APIURL}/posts`);
         const results = await response.json();
-        const posts = results.data;
+        const posts = results.data.posts;
         return posts;
         
     } catch (error){

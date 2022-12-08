@@ -1,9 +1,7 @@
 import "./App.css";
 import { fetchMe } from "./api/auth";
 import { getAllPosts } from "./api/posts";
-import PulledPosts from "./Components/PulledPost";
 import Heading from "./Components/Heading";
-import Navbar from "./Components/Navbar";
 import React, { useState, useEffect } from "react";
 import {
   Route,
@@ -13,6 +11,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import AllPosts from "./Components/AllPosts";
+import LogIn from "./Components/LogIn";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -27,16 +26,16 @@ const App = () => {
     fetchPosts()
   }, []);
 
-  // useEffect(() => {
-  //   const getMe = async () => {
-  //     const data = await fetchMe(token);
-  //     setUser(data);
-  //     console.log("user", user);
-  //   };
-  //   if (token) {
-  //     getMe();
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+      console.log("user", user);
+    };
+    if (token) {
+      getMe();
+    }
+  }, [token]);
 
   useEffect(() => {
     const setInitialData = async () => {
@@ -51,8 +50,8 @@ const App = () => {
       <>
         <div className="App">
           <Heading />
-          Whats going on?
-          <Navbar />
+          <LogIn setToken={setToken} />
+          {user?.username}
           <AllPosts posts={posts}/>
         </div>
       </>

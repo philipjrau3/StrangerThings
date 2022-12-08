@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { registerUser } from "../api/auth";
+import React from "react";
 
-const Register = ({ setToken }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  return (
-    <div>
+const SignUp = () => {
+    return (
+        <div>
       <form
         onSubmit={async (e) => {
           try {
@@ -33,10 +30,10 @@ const Register = ({ setToken }) => {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
-  );
-};
+    )
+}
 
-export default Register;
+export default SignUp;
