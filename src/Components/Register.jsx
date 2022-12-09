@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { registerUser } from "../api/auth";
 
-const SignUp = () => {
-    return (
-        <div>
+const Register = ({ setToken }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  return (
+    <div>
       <form
         onSubmit={async (e) => {
           try {
             e.preventDefault();
-            console.log(password, username);
+            // console.log(password, username);
             const token = await registerUser(username, password);
             setToken(token);
             localStorage.setItem("token", token);
@@ -16,24 +19,24 @@ const SignUp = () => {
           }
         }}
       >
-        <label htmlFor="username">Username :</label>
+        <label htmlFor="username">New User:</label>
         <input
           value={username}
           type="text"
-          placeholder="username"
+          placeholder="New User"
           onChange={(e) => setUsername(e.target.value)}
         ></input>
         <label htmlFor="password">Password :</label>
         <input
           value={password}
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Register</button>
       </form>
     </div>
-    )
-}
+  );
+};
 
-export default SignUp;
+export default Register;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   createNewPost,
-  updateEntirePost,
+  // updateEntirePost,
   deletePost,
 } from '../api/posts';
 import './AllPosts.css';
@@ -9,9 +9,9 @@ import Button from './Button';
 
 const AllPosts = ({ posts, setPosts }) => {
   // const postToCreate = {
-  //   title: '',
-  //   description: '',
-  //   user._id: 
+  //   title: "My favorite stuffed animal",
+  //   description: "This is a pooh doll from 1973. It has been carefully taken care of since I first got it.",
+  //   price: "$480.00",
   // };
   // const postToCompletelyUpdate = {
   //   title: '',
@@ -30,7 +30,7 @@ const AllPosts = ({ posts, setPosts }) => {
         content={'Create New Post'}
       />
 
-      <Button
+      {/* <Button
         action={async () => {
           const updatedPost = await updateEntirePost(
             postId,
@@ -42,7 +42,7 @@ const AllPosts = ({ posts, setPosts }) => {
           setPosts([updatedPost, ...listToReturn]);
         }}
         content={'Update Post'}
-      />
+      /> */}
 
       <Button
         action={async () => {

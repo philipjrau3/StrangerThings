@@ -2,22 +2,17 @@ import "./App.css";
 import { fetchMe } from "./api/auth";
 import { getAllPosts } from "./api/posts";
 import Heading from "./Components/Heading";
-import React, { useState, useEffect } from "react";
-import {
-  Route,
-  Navigate,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom';
 import AllPosts from "./Components/AllPosts";
-import LogIn from "./Components/LogIn";
+import Register from "./Components/Register";
+import SignIn from "./Components/SignIn";
+import React, { useState, useEffect } from "react";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
 
+  //website posts
   useEffect(() => {
     const fetchPosts = async () => {
       const data = await getAllPosts();
@@ -26,6 +21,7 @@ const App = () => {
     fetchPosts()
   }, []);
 
+  //log in 
   useEffect(() => {
     const getMe = async () => {
       const data = await fetchMe(token);
@@ -37,6 +33,7 @@ const App = () => {
     }
   }, [token]);
 
+  //buttons
   useEffect(() => {
     const setInitialData = async () => {
       const fetchedPosts = await getAllPosts();
@@ -50,22 +47,15 @@ const App = () => {
       <>
         <div className="App">
           <Heading />
-          <LogIn setToken={setToken} />
-          {user?.username}
+          <p>Already a member? Sign In!</p>
+          <SignIn setToken={setToken}/>
+          <p>New user? Register below!</p>
+          <Register setToken={setToken} />
           <AllPosts posts={posts}/>
         </div>
       </>
     </div>
   );
 }
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <>
-//       <Route path='/' element={<App />} />
-//       <Route path='*' element={<Navigate replace to='/' />} />
-//     </>
-//   )
-// );
 
 export default App;

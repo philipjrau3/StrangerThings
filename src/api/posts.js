@@ -32,21 +32,21 @@ export const createNewPost = async (post, token) => {
     }
   };
   
-  export const updateEntirePost = async (postId, post, token) => {
-    try {
-      const response = await fetch(`${APIRUL}/posts/${postId}`, {
-        method: 'PUT',
-        body: JSON.stringify(post),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  };
+//   export const updateEntirePost = async (postId, post, token) => {
+//     try {
+//       const response = await fetch(`${APIRUL}/posts/${postId}`, {
+//         method: 'PUT',
+//         body: JSON.stringify(post),
+//         headers: {
+//           'Content-type': 'application/json; charset=UTF-8',
+//         },
+//       });
+//       const data = await response.json();
+//       return data;
+//     } catch (error) {
+//       throw error;
+//     }
+//   };
   
   export const deletePost = async (postId) => {
     try {
