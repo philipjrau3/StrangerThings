@@ -1,6 +1,6 @@
 import React from "react";
 const cohort = "2211-FTB-ET-WEB-FT";
-const APIURL = `https://strangers-things.herokuapp.com/api/${cohort}/`;
+const APIURL = `https://strangers-things.herokuapp.com/api/${cohort}`;
 
 export const getAllPosts = async () => {
     try{
@@ -15,15 +15,21 @@ export const getAllPosts = async () => {
     }
 }
 
-export const createNewPost = async (post, token) => {
+export const createNewPost = async (title, description, price,  token) => {
     try {
-      const response = await fetch(`${APIRUL}/posts`, {
+      const response = await fetch(`${APIURL}/posts`, {
         method: 'POST',
-        body: JSON.stringify(post),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           'Authorization': `Bearer ${token}`
         },
+        body: JSON.stringify({
+            post: {
+              title: title,
+              description: description,
+              price: price,
+            }
+          })
       });
       const data = await response.json();
       return data;
@@ -48,7 +54,7 @@ export const createNewPost = async (post, token) => {
 //     }
 //   };
   
-  export const deletePost = async (postId) => {
+  export const deletePost = async (postId, token) => {
     try {
       const response = await fetch(`${APIRUL}/posts/${postId}`, {
         method: 'DELETE',

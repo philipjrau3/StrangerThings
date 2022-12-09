@@ -6,6 +6,7 @@ import AllPosts from "./Components/AllPosts";
 import Register from "./Components/Register";
 import SignIn from "./Components/SignIn";
 import React, { useState, useEffect } from "react";
+import { Navigate, Route, Routes, Link } from 'react-router-dom';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -47,11 +48,15 @@ const App = () => {
       <>
         <div className="App">
           <Heading />
+          {/* <Routes>
+            <Route exact path="/" element={<App />}></Route>
+            <Route path='*' element={<Navigate replace to='/' />}></Route>
+          </Routes> */}
           <p>Already a member? Sign In!</p>
           <SignIn setToken={setToken}/>
           <p>New user? Register below!</p>
           <Register setToken={setToken} />
-          <AllPosts posts={posts}/>
+          <AllPosts posts={posts} setPosts={setPosts}/>
         </div>
       </>
     </div>

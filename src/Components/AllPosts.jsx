@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   createNewPost,
   // updateEntirePost,
@@ -8,27 +8,44 @@ import './AllPosts.css';
 import Button from './Button';
 
 const AllPosts = ({ posts, setPosts }) => {
-  // const postToCreate = {
-  //   title: "My favorite stuffed animal",
-  //   description: "This is a pooh doll from 1973. It has been carefully taken care of since I first got it.",
-  //   price: "$480.00",
-  // };
-  // const postToCompletelyUpdate = {
-  //   title: '',
-  //   body: '',
-  //   user._id: 
-  // };
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   return (
     <div className='user-posts'>
 
-      <Button
-        action={async () => {
-          const newPost = await createNewPost(postToCreate);
-          setPosts([newPost, ...posts]);
-        }}
-        content={'Create New Post'}
-      />
+      <form>
+        <label htmlFor="title">Title:</label>
+        <input
+          value={title}
+          type="text"
+          placeholder="Title"
+          onChange={(e) => setTitle(e.target.value)}
+        ></input>
+        <label htmlFor="description">Description:</label>
+        <input
+          value={description}
+          type="text"
+          placeholder="Description"
+          onChange={(e) => setDescription(e.target.value)}
+        ></input>
+        <label htmlFor="price">Price:</label>
+        <input
+          value={price}
+          type="text"
+          placeholder="Price"
+          onChange={(e) => setPrice(e.target.value)}
+        ></input>
+      </form>
+        <Button
+          action={async () => {
+            const token = localStorage.getItem("token")
+            const newPost = await createNewPost(title, description, price, token);
+            setPosts([newPost, ...posts]);
+          }}
+          content={'Create New Post'}
+        />
 
       {/* <Button
         action={async () => {
@@ -46,7 +63,7 @@ const AllPosts = ({ posts, setPosts }) => {
 
       <Button
         action={async () => {
-          const postDeleted = await deletePost(post._id);
+          const postDeleted = await deletePost(post._id, token);
           setPosts([
             ...posts.filter((post) => post._id !== postDeleted.id),
           ]);
