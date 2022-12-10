@@ -15,7 +15,7 @@ export const getAllPosts = async () => {
     }
 }
 
-export const createNewPost = async (title, description, price,  token) => {
+export const createNewPost = async (title, description, price, token) => {
     try {
       const response = await fetch(`${APIURL}/posts`, {
         method: 'POST',
@@ -38,30 +38,17 @@ export const createNewPost = async (title, description, price,  token) => {
     }
   };
   
-//   export const updateEntirePost = async (postId, post, token) => {
-//     try {
-//       const response = await fetch(`${APIRUL}/posts/${postId}`, {
-//         method: 'PUT',
-//         body: JSON.stringify(post),
-//         headers: {
-//           'Content-type': 'application/json; charset=UTF-8',
-//         },
-//       });
-//       const data = await response.json();
-//       return data;
-//     } catch (error) {
-//       throw error;
-//     }
-//   };
-  
   export const deletePost = async (postId, token) => {
     try {
       const response = await fetch(`${APIRUL}/posts/${postId}`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+          }
       });
       const data = await response.json();
-      return { id: postId };
+      return { data, id: postId };
     } catch (error) {
       throw error;
     }
-  };
+  }

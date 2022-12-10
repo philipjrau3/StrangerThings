@@ -47,36 +47,22 @@ const AllPosts = ({ posts, setPosts }) => {
           content={'Create New Post'}
         />
 
-      {/* <Button
-        action={async () => {
-          const updatedPost = await updateEntirePost(
-            postId,
-            postToCompletelyUpdate
-          );
-          const listToReturn = await posts.filter(
-            (post) => post._id !== updatedPost.id
-          );
-          setPosts([updatedPost, ...listToReturn]);
-        }}
-        content={'Update Post'}
-      /> */}
-
-      <Button
-        action={async () => {
-          const postDeleted = await deletePost(post._id, token);
-          setPosts([
-            ...posts.filter((post) => post._id !== postDeleted.id),
-          ]);
-        }}
-        content={'Delete Post'}
-      />
 
 {posts ? posts.map(post => {
-        return (
-          <div key={post._id} className='post'>
+  return (
+    <div key={post._id} className='post'>
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <p>{post.price}</p>
+            <Button
+              action={async () => {
+                const token = localStorage.getItem("token")
+                const postDeleted = await deletePost(post.id, token);
+                setPosts([...posts.filter(post => post.id !== postDeleted.id),
+                ]);
+              }}
+              content={'Delete Post'}
+            />
           </div>
         )}
       ) : (
