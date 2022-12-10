@@ -40,7 +40,7 @@ export const createNewPost = async (title, description, price, token) => {
   
   export const deletePost = async (postId, token) => {
     try {
-      const response = await fetch(`${APIRUL}/posts/${postId}`, {
+      const response = await fetch(`${APIURL}/posts/${postId}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -52,3 +52,24 @@ export const createNewPost = async (title, description, price, token) => {
       throw error;
     }
   }
+
+  export const createMessage = async (message, token) => {
+    try {
+        const response = await fetch(`${APIURL}/posts/${postId}/messages`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              message: {
+                content: message
+              }
+            })
+          })
+          const data = await response.json();
+          return { data, id: postId };
+        } catch (error) {
+          throw error;
+        }
+  };
