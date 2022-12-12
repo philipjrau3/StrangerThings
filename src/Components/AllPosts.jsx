@@ -52,9 +52,9 @@ const AllPosts = ({ posts, setPosts }) => {
 {posts ? posts.map(post => {
   return (
     <div key={post._id} className='post'>
-            <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            <p>{post.price}</p>
+            <h3>Title: {post.title}</h3>
+            <p>Item Description: <br></br>{post.description}</p>
+            <p>Price: {post.price}</p>
 
         <form>
           <label htmlFor="message">New Message:</label>
@@ -65,11 +65,11 @@ const AllPosts = ({ posts, setPosts }) => {
             onChange={(e) => setMessage(e.target.value)}
           ></input>
         </form>
-        <Button
+        <Button 
           action={async () => {
             const token = localStorage.getItem("token")
             const newMessage = await createNewPost(message, token);
-            setPosts([newMessage]);
+            setMessage([newMessage]);
           }}
           content={'Send Message'}
         />

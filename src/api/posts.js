@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+
 const cohort = "2211-FTB-ET-WEB-FT";
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohort}`;
 
