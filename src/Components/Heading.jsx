@@ -11,7 +11,8 @@ const Heading = ({ user }) => {
         </h1>
         <div>
         Already a member? <Link to="/SignIn">Sign In<br></br></Link>
-        New user? <Link to="/Register">Sign Up</Link>
+        New user? <Link to="/Register">Sign Up<br></br></Link>
+        Just browsing? <Link to="/">See All Stranger's Posts</Link>
     </div>
       </header>
     );  

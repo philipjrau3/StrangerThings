@@ -14,13 +14,13 @@ const App = () => {
   const [posts, setPosts] = useState([]);
 
   //website posts
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await getAllPosts();
-      setPosts(data.posts)
-    }
-    fetchPosts()
-  }, []);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const data = await getAllPosts();
+  //     setPosts(data.posts)
+  //   }
+  //   fetchPosts()
+  // }, []);
 
   //log in 
   useEffect(() => {
@@ -50,11 +50,11 @@ const App = () => {
           <Heading />
           <Routes>
               <Route path="/" element={<AllPosts posts={posts} setPosts={posts}/>}></Route>
-              <Route path="Register" element={<Register />}></Route>
-              <Route path="SignIn" element={<SignIn />}></Route>
+              <Route path="Register" element={<Register setToken={setToken}/>}></Route>
+              <Route path="SignIn" element={<SignIn setToken={setToken}/>}></Route>
              
             </Routes> 
-          <AllPosts posts={posts} setPosts={setPosts}/>
+          {/* <AllPosts posts={posts} setPosts={setPosts}/> */}
         </div>
       </>
     </div>
