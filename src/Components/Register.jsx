@@ -10,7 +10,6 @@ const Register = ({ setToken }) => {
         onSubmit={async (e) => {
           try {
             e.preventDefault();
-            // console.log(password, username);
             const data = await registerUser(username, password);
             if (data.data.token) {
               setToken(data.data.token);

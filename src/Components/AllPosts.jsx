@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   createMessage,
   createNewPost,
-  // updateEntirePost,
   deletePost,
 } from '../api/posts';
 import './AllPosts.css';
@@ -13,6 +12,7 @@ const AllPosts = ({ posts, setPosts }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [message, setMessage] = useState("");
+
 
   return (
     <div className='user-posts'>
