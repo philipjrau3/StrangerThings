@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { previousUser } from "../api/auth";
 
-const SignIn = ({ setToken }) => {
+const SignIn = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
     return (
@@ -12,7 +12,7 @@ const SignIn = ({ setToken }) => {
             e.preventDefault();
             console.log(password, username);
             const token = await previousUser(username, password);
-            setToken(token);
+            setLoggedIn(true);
             localStorage.setItem("token", token);
           } catch (error) {
             console.error(error);

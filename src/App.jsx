@@ -9,7 +9,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token") ? true : false) 
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
 
@@ -24,15 +24,18 @@ const App = () => {
 
   //log in 
   useEffect(() => {
+    console.log(loggedIn)
     const getMe = async () => {
+      const token = localStorage.getItem('token');
       const data = await fetchMe(token);
       setUser(data);
-      console.log("user", user);
+      console.log("data", data);
     };
-    if (token) {
+    if (loggedIn) {
       getMe();
     }
-  }, [token]);
+    console.log(user);
+  }, [loggedIn]);
 
   //buttons
   useEffect(() => {
@@ -50,8 +53,8 @@ const App = () => {
           <Heading />
           <Routes>
               <Route path="/" element={<AllPosts posts={posts} setPosts={posts}/>}></Route>
-              <Route path="Register" element={<Register setToken={setToken}/>}></Route>
-              <Route path="SignIn" element={<SignIn setToken={setToken}/>}></Route>
+              <Route path="Register" element={<Register setLoggedIn={setLoggedIn}/>}></Route>
+              <Route path="SignIn" element={<SignIn setLoggedIn={setLoggedIn}/>}></Route>
             </Routes> 
         </div>
       </>
